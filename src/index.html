@@ -2,22 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
+    <title>Home-work 11</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
     <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/common.css" />
   </head>
   <body>
-    <load src="./partials/header.html" icon-path="img/sprite.svg#logo" />
+    <form class="js-search search">
+      <input class="input-search" name="search" type="text" />
+      <button class="btn-search" type="submit">Search</button>
+    </form>
+    <div class="container">
+      <span class="loader"></span>
+      <ul class="gallery"></ul>
+    </div>
 
-    <main>
-      <!-- Loads the specified .html file -->
-      <load src="./partials/vite-promo.html" />
-      <load src="./partials/badges.html" />
-    </main>
+    <div class="container-loader">
+      <span class="loader-more"></span>
+      <p class="end-loader">You have reached the end of the search results</p>
+      <button class="btn-load">Load more</button>
+    </div>
 
-    <load src="./partials/footer.html" />
+    <a class="up-btn" href="#home">
+      <i class="fa-solid fa-arrow-up"></i>
+    </a>
 
     <script type="module" src="./main.js"></script>
+    <script type="module" src="./js/pixabay-api.js"></script>
+    <script type="module" src="./js/render-functions.js"></script>
+    <script type="module" src="./js/scrolling.js"></script>
   </body>
 </html>
