@@ -2,45 +2,41 @@ import axios from "axios";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
-export { getPictures };
+export { fetchImages };
 
-const perPage = 15; // Установлено значение 15, как требуется
+const imagesPerPage = 15; 
 
-async function getPictures(name, page) {
-    const KEY = '46767628-a1a0fbec2a5b02d371c47f484';
+async function fetchImages(query, pageNum) {
+    const API_KEY = '46767628-a1a0fbec2a5b02d371c47f484';
 
     try {
-        // Кодируем имя для корректного запроса
-        const formattedName = encodeURIComponent(name);
+        const encodedQuery = encodeURIComponent(query);
 
-        console.log('Searching for:', formattedName);
-        console.log('Page:', page);
-
-        const response = await axios.get(`https://pixabay.com/api/`, {
+        const apiResponse = await axios.get(`https://pixabay.com/api/`, {
             params: {
-                key: KEY,
-                q: formattedName,
+                key: API_KEY,
+                q: encodedQuery,
                 image_type: 'photo',
                 orientation: 'horizontal',
                 safesearch: true,
-                page: page,
-                per_page: perPage,
+                page: pageNum,
+                per_page: imagesPerPage,
             }
         });
 
-        // Проверка наличия данных
-        if (response.data.hits) {
-            console.log('Received data:', response.data.hits);
-            return response.data; // Возвращаем только данные
+        
+        if (apiResponse.data && apiResponse.data.hits) {
+            return apiResponse.data; 
         } else {
             console.error('No hits found.');
-            return null; // Возвращаем null, если нет данных
+            return { totalHits: 0, hits: [] }; 
         }
     } catch (error) {
         iziToast.error({
             title: 'Error',
             message: 'Sorry! The site is currently unavailable. Please try later!',
         });
-        console.error('Error message:', error.message); // Выводим сообщение об ошибке в консоль
+        console.error('Error message:', error.message); 
+        return { totalHits: 0, hits: [] }; 
     }
 }

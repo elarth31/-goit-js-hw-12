@@ -152,53 +152,24 @@ body {
 }
 
 .loader-more {
-    width: 48px;
+    width: 40px;
     height: 40px;
-    margin-top: 30px;
-    display: inline-block;
-    position: relative;
-    background: #FFF;
-    border-radius: 15% 15% 35% 35%;
+    border: 5px solid #737474;
+    border-top: 5px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 30px auto;
 }
 
-.loader-more::after {
-    content: '';
-    box-sizing: border-box;
-    position: absolute;
-    left: 45px;
-    top: 8px;
-    border: 4px solid #FFF;
-    width: 16px;
-    height: 20px;
-    border-radius: 0 4px 4px 0;
-}
-
-.loader-more::before {
-    content: '';
-    position: absolute;
-    width: 1px;
-    height: 10px;
-    color: #FFF;
-    top: -15px;
-    left: 11px;
-    box-sizing: border-box;
-    animation: animationloader 1s ease infinite;
-}
-
-/* @keyframes animationloader {
+@keyframes spin {
     0% {
-        box-shadow: 2px 0px rgba(255, 255, 255, 0), 12px 0px rgba(255, 255, 255, 0.3), 20px 0px rgba(255, 255, 255, 0);
-    }
-
-    50% {
-        box-shadow: 2px -5px rgba(255, 255, 255, 0.5), 12px -3px rgba(255, 255, 255, 0.5), 20px -2px rgba(255, 255, 255, 0.6);
+        transform: rotate(0deg);
     }
 
     100% {
-        box-shadow: 2px -8px rgba(255, 255, 255, 0), 12px -5px rgba(255, 255, 255, 0), 20px -5px rgba(255, 255, 255, 0);
+        transform: rotate(360deg);
     }
-} */
-
+}
 
 
 .up-btn {
@@ -231,15 +202,6 @@ body {
 .up-btn.show {
     opacity: 1;
     visibility: visible;
-}
-
-
-.end-loader {
-    color: #090909;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.5;
-    letter-spacing: 0.04em;
 }
 
 
