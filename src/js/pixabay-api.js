@@ -25,11 +25,19 @@ async function fetchImages(query, pageNum) {
         });
 
         
-        if (apiResponse.data && apiResponse.data.hits) {
-            return apiResponse.data; 
+       if (apiResponse.data && apiResponse.data.hits) {
+            const totalHits = apiResponse.data.totalHits; 
+            const currentHits = apiResponse.data.hits.length; 
+
+           
+            return { 
+                hits: apiResponse.data.hits, 
+                totalHits: totalHits, 
+                currentHits: currentHits 
+            };
         } else {
             console.error('No hits found.');
-            return { totalHits: 0, hits: [] }; 
+            return { totalHits: 0, hits: [], currentHits: 0 }; 
         }
     } catch (error) {
         iziToast.error({
@@ -37,6 +45,6 @@ async function fetchImages(query, pageNum) {
             message: 'Sorry! The site is currently unavailable. Please try later!',
         });
         console.error('Error message:', error.message); 
-        return { totalHits: 0, hits: [] }; 
+        return { totalHits: 0, hits: [], currentHits: 0 }; 
     }
 }

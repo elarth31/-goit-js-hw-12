@@ -14,7 +14,7 @@ const loadingMoreSpinner = document.querySelector('.loader-more');
 const endOfResults = document.querySelector('.end-loader');
 
 let currentPageNumber = 1;
-const imagesPerPage = 40;
+const imagesPerPage = 15;  
 let searchQuery = '';
 let lightboxInstance;
 
@@ -60,7 +60,7 @@ async function onSearchSubmit(event) {
             return;
         }
 
-        const totalPages = Math.ceil(data.totalHits / imagesPerPage);
+        const totalPages = Math.ceil(data.totalHits / imagesPerPage); 
 
         if (currentPageNumber >= totalPages) {
             loadMoreButton.style.display = 'none';
@@ -120,16 +120,17 @@ async function onLoadMoreImages() {
             return;
         }
 
+        
         imageGallery.insertAdjacentHTML("beforeend", createMarkup(data.hits));
 
-        const totalPages = Math.ceil(data.totalHits / imagesPerPage);
+        const totalPages = Math.ceil(data.totalHits / imagesPerPage); 
         if (currentPageNumber >= totalPages) {
             iziToast.info({
                 title: 'Caution',
-                message: `We're sorry, but you've reached the end of search results.`,
+                message: `You've reached the end of the collection.`,
             });
             loadMoreButton.style.display = 'none';
-            endOfResults.style.display = 'block';
+            endOfResults.style.display = 'block';  
         } else {
             loadMoreButton.style.display = 'block';
         }
@@ -151,3 +152,4 @@ async function onLoadMoreImages() {
         console.error('Error in onLoadMoreImages:', error);
     }
 }
+
